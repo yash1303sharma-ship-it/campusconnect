@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CampusConnect - discover and manage campus events and clubs" />
+  <title>CampusConnect - Campus Events & Clubs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" class="logo">Campus<span>Connect</span></a>
+    <nav aria-label="Main navigation">
+      <span id="userBadge" class="user-badge" hidden></span>
+      <button id="newEventBtn" class="btn btn-primary" hidden>+ New Event</button>
+      <button id="loginBtn" class="btn btn-ghost">Login</button>
+      <button id="registerBtn" class="btn btn-primary">Sign Up</button>
+      <button id="logoutBtn" class="btn btn-ghost" hidden>Logout</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Discover what's happening on campus</h1>
+    <p>Browse events, RSVP in one click, and keep up with your favourite clubs.</p>
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="Search events, clubs..." aria-label="Search events" />
+      <select id="categorySelect" aria-label="Filter by category">
+        <option>All</option><option>Technical</option><option>Cultural</option>
+        <option>Sports</option><option>Workshop</option><option>Other</option>
+      </select>
+      <label class="check"><input type="checkbox" id="upcomingCheck" checked /> Upcoming only</label>
+    </div>
+  </section>
+
+  <main>
+    <p id="status" class="status" role="status"></p>
+    <div id="eventGrid" class="grid"></div>
+  </main>
+
+  <dialog id="authModal">
+    <form id="authForm" method="dialog">
+      <h2 id="authTitle">Login</h2>
+      <div id="nameRow">
+        <label>Full name <input name="name" /></label>
+        <label>I am a
+          <select name="role"><option value="student">Student</option><option value="organizer">Club Organizer</option></select>
+        </label>
+      </div>
+      <label>Email <input name="email" type="email" required /></label>
+      <label>Password <input name="password" type="password" minlength="6" required /></label>
+      <p id="authError" class="error"></p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="eventModal">
+    <form id="eventForm" method="dialog">
+      <h2 id="eventTitle">New Event</h2>
+      <input type="hidden" name="id" />
+      <label>Title <input name="title" required maxlength="100" /></label>
+      <label>Description <textarea name="description" rows="3" required></textarea></label>
+      <div class="two-col">
+        <label>Category
+          <select name="category"><option>Technical</option><option>Cultural</option><option>Sports</option><option>Workshop</option><option>Other</option></select>
+        </label>
+        <label>Club <input name="club" placeholder="e.g. Coding Club" /></label>
+      </div>
+      <div class="two-col">
+        <label>Venue <input name="venue" required /></label>
+        <label>Capacity <input name="capacity" type="number" min="1" value="100" /></label>
+      </div>
+      <label>Date & time <input name="date" type="datetime-local" required /></label>
+      <p id="eventError" class="error"></p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>CampusConnect &middot; CSN371 Front End Engineering Mini Project</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
